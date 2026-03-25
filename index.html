@@ -899,7 +899,7 @@ const loader = new GLTFLoader();
 const clock  = new THREE.Clock();
 let model;
 
-loader.load('./models/DarkHumanoidV2.glb',
+loader.load('./models/DarkHumanoidV3.glb',
     gltf => {
         model = gltf.scene; scene.add(model); model.rotation.y = Math.PI;
         model.traverse(child => {
