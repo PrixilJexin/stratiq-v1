@@ -99,6 +99,113 @@
             scroll-behavior: smooth;
         }
 
+        /* ══════════════════════════════════════
+           MOBILE RESPONSIVENESS (ADDED)
+           ══════════════════════════════════════ */
+        @media (max-width: 768px) {
+            html, body {
+                cursor: auto !important;
+            }
+
+            #cursor, #cursor-ring {
+                display: none !important;
+            }
+
+            /* Nav */
+            nav {
+                padding: 0 20px;
+                height: 60px;
+            }
+
+            .nav-logo {
+                font-size: 16px;
+            }
+
+            .nav-menu-label, .btn-nav-cta-plus {
+                display: none;
+            }
+
+            .btn-nav-cta {
+                padding: 8px 14px;
+                font-size: 10px;
+            }
+
+            #nav-overlay {
+                top: 60px;
+                height: calc(100vh - 60px);
+                flex-direction: column;
+            }
+
+            .overlay-links {
+                padding: 32px 24px;
+                border-right: none;
+                border-bottom: 1px solid rgba(245, 243, 239, 0.07);
+            }
+
+            .overlay-link-text {
+                font-size: 32px !important;
+            }
+
+            .overlay-contact {
+                padding: 24px;
+            }
+
+            .overlay-images {
+                display: none;
+            }
+
+            /* Topbar & Hero Heading */
+            .topbar {
+                padding: 100px 24px 0;
+                margin-bottom: 2rem;
+            }
+
+            .hero-heading {
+                font-size: 56px !important;
+                line-height: 1.1;
+                letter-spacing: -0.01em;
+            }
+
+            /* Works Grid */
+            .works-wrap {
+                padding: 0 24px;
+            }
+
+            .grid-view {
+                grid-template-columns: 1fr !important; /* Force 1 column */
+            }
+
+            .card-wide {
+                grid-column: span 1 !important;
+            }
+
+            .card-title {
+                font-size: 24px !important;
+            }
+
+            /* Footer */
+            .footer-meta {
+                padding: 20px 24px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-main {
+                flex-direction: column;
+            }
+
+            .footer-brand-col, .footer-contact-col {
+                width: 100%;
+                padding: 32px 24px;
+                border-right: none;
+            }
+
+            .footer-nav-cols {
+                grid-template-columns: 1fr;
+                padding: 32px 24px;
+            }
+        }
+
         /* ══ ANIMATED GRADIENT BACKGROUND ══ */
         #bg-canvas {
             position: fixed;
