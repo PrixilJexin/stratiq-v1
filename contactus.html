@@ -32,120 +32,7 @@
             font-weight: 400;
         }
 
-        /* ══════════════════════════════════════
-           MOBILE RESPONSIVENESS (ADDED)
-           ══════════════════════════════════════ */
-        @media (max-width: 768px) {
-            html, body {
-                cursor: auto !important;
-            }
 
-            #cursor, #cursor-ring {
-                display: none !important;
-            }
-
-            /* Nav */
-            nav {
-                padding: 0 20px;
-                height: 60px;
-            }
-
-            .nav-logo {
-                font-size: 16px;
-            }
-
-            .nav-menu-label, .btn-nav-cta-plus {
-                display: none;
-            }
-
-            .btn-nav-cta {
-                padding: 8px 14px;
-                font-size: 10px;
-            }
-
-            #nav-overlay {
-                top: 60px;
-                height: calc(100vh - 60px);
-                flex-direction: column;
-            }
-
-            .overlay-links {
-                padding: 32px 24px;
-                border-right: none;
-                border-bottom: 1px solid rgba(245, 243, 239, 0.07);
-            }
-
-            .overlay-link-text {
-                font-size: 32px !important;
-            }
-
-            .overlay-contact {
-                padding: 24px;
-            }
-
-            .overlay-images {
-                display: none;
-            }
-
-            /* Content Header */
-            .contact-header {
-                padding: 60px 24px 40px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 24px;
-            }
-
-            .contact-headline {
-                font-size: 40px !important; /* Fixed collision issue */
-                line-height: 1.1;
-            }
-
-            .contact-header-right {
-                max-width: 100%;
-            }
-
-            /* Grid */
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-col {
-                padding: 40px 24px;
-                border-right: none;
-                border-bottom: 1px solid var(--line);
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            .contact-info-col {
-                padding: 40px 24px;
-            }
-
-            /* Footer (if exists here, usually it does) */
-            .footer-meta {
-                padding: 20px 24px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .footer-main {
-                flex-direction: column;
-            }
-
-            .footer-brand-col, .footer-contact-col {
-                width: 100%;
-                padding: 32px 24px;
-                border-right: none;
-            }
-
-            .footer-nav-cols {
-                grid-template-columns: 1fr;
-                padding: 32px 24px;
-            }
-        }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
@@ -1401,45 +1288,42 @@
         }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 900px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+        /* ══════════════════════════════════════
+           MOBILE RESPONSIVENESS (IMPROVED)
+           ══════════════════════════════════════ */
+        @media (max-width: 768px) {
+            html, body { cursor: auto !important; overflow-x: hidden; }
+            #cursor, #cursor-ring { display: none !important; }
 
-            .form-col {
-                border-right: none;
-                border-bottom: 1px solid var(--line);
-                padding: 40px 24px;
-            }
+            /* Corner marks collision */
+            .corner-fixed { display: none !important; }
 
-            .info-col {
-                padding: 40px 24px;
-            }
+            /* Nav */
+            nav { padding: 0 20px; height: 60px; }
+            .nav-logo { font-size: 16px; }
+            .nav-menu-label, .btn-nav-cta-plus { display: none; }
+            .btn-nav-cta { padding: 8px 14px; font-size: 10px; }
+            
+            #nav-overlay { top: 0; height: 100vh; flex-direction: column; }
+            .overlay-links { padding: 80px 24px 40px; border-right: none; border-bottom: 1px solid rgba(245, 243, 239, 0.07); }
+            .overlay-link-text { font-size: clamp(32px, 8vw, 48px) !important; }
+            .overlay-contact { padding: 24px; flex: none; }
+            .overlay-images { display: none; }
 
-            .contact-header {
-                flex-direction: column;
-                padding: 60px 24px 40px;
-                gap: 28px;
-            }
+            /* Content Header */
+            .contact-header { padding: 120px 24px 40px; flex-direction: column; align-items: flex-start; gap: 24px; }
+            .contact-headline { font-size: clamp(40px, 12vw, 64px) !important; line-height: 1.1; }
+            .contact-header-right { max-width: 100%; }
 
-            .contact-header-right {
-                max-width: 100%;
-            }
+            /* Grid */
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-col { padding: 40px 24px; border-right: none; border-bottom: 1px solid var(--line); }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .info-col, .contact-info-col { padding: 40px 24px; }
 
-            .contact-footer-strip {
-                flex-direction: column;
-                gap: 14px;
-                padding: 20px 24px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            .corner-fixed {
-                display: none;
-            }
+            /* Footer Strip */
+            .contact-footer-strip { flex-direction: column; gap: 20px; padding: 24px 20px; align-items: flex-start; }
+            .footer-strip-center { flex-direction: column; align-items: flex-start; gap: 12px; }
         }
     </style>
 </head>

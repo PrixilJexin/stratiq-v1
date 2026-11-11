@@ -581,8 +581,11 @@
                 .ExperienceHighlights__slideContent { left: 50vw; top: 65vh; width: 45vw; }
             }
 
+            /* ═══════════════════════════════════════════
+            MOBILE RESPONSIVENESS (IMPROVED)
+            ═══════════════════════════════════════════ */
             @media (max-width: 768px) {
-                html, body { cursor: auto !important; }
+                html, body { cursor: auto !important; overflow-x: hidden; }
                 #cursor, #cursor-ring { display: none !important; }
 
                 /* Nav */
@@ -591,26 +594,26 @@
                 .nav-menu-label, .btn-nav-cta-plus { display: none; }
                 .btn-nav-cta { padding: 8px 14px; font-size: 10px; }
                 
-                #nav-overlay { top: 60px; height: calc(100vh - 60px); flex-direction: column; }
-                .overlay-links { padding: 32px 24px; border-right: none; border-bottom: 1px solid rgba(245, 243, 239, 0.07); }
-                .overlay-link-text { font-size: 32px !important; }
-                .overlay-contact { padding: 24px; }
+                #nav-overlay { top: 0; height: 100vh; flex-direction: column; }
+                .overlay-links { padding: 80px 24px 40px; border-right: none; border-bottom: 1px solid rgba(245, 243, 239, 0.07); }
+                .overlay-link-text { font-size: clamp(32px, 8vw, 48px) !important; }
+                .overlay-contact { padding: 24px; flex: none; }
                 .overlay-images { display: none; }
 
                 /* About Section */
-                #stratiq-wrapper section { padding: 80px 24px 40px; min-height: auto; }
-                #stratiq-wrapper .hero-heading { font-size: 48px !important; line-height: 1.1; }
+                #stratiq-wrapper section { padding: 120px 24px 60px; min-height: auto; }
+                #stratiq-wrapper .hero-heading { font-size: clamp(40px, 12vw, 64px) !important; line-height: 1.1; }
                 #stratiq-wrapper .grid-container { grid-template-columns: 1fr; margin-top: 40px; }
                 #stratiq-wrapper .grid-container > div { grid-column: 1 / -1 !important; }
                 #stratiq-wrapper .sub-message { font-size: 16px; max-width: 100%; }
 
                 /* Experience Highlights */
-                .StickyWrapper { height: auto !important; } /* Disable sticky on small mobile if it feels clunky */
+                .StickyWrapper { height: auto !important; }
                 .StickyElement { position: relative; top: 0; height: auto; padding: 40px 24px; overflow: visible; }
-                .ExperienceHighlights__slidesContainer { position: relative; display: flex; flex-direction: column; gap: 80px; }
+                .ExperienceHighlights__slidesContainer { position: relative; display: flex; flex-direction: column; gap: 60px; }
                 .ExperienceHighlights__slide { position: relative; opacity: 1 !important; pointer-events: all; }
                 .ExperienceHighlights__slideImage { 
-                    position: relative; width: 100% !important; height: 250px !important; 
+                    position: relative; width: 100% !important; height: 280px !important; 
                     left: 0 !important; top: 0 !important; margin-bottom: 24px; 
                 }
                 .ExperienceHighlights__slideContent { 
@@ -623,16 +626,16 @@
                 .SectionLabel, .TagLine { display: none; }
 
                 /* Text Reveal */
-                .SectionTextReveal { padding: 60px 24px; }
-                .ScrollRevealText { font-size: 24px !important; line-height: 1.4; }
+                .SectionTextReveal { padding: 80px 24px; }
+                .ScrollRevealText { font-size: 1.5rem !important; line-height: 1.4; }
 
                 /* Footer */
-                .footer-meta { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
+                .footer-meta { padding: 24px 20px; flex-direction: row; justify-content: space-between; align-items: center; }
                 .footer-main { flex-direction: column; }
-                .footer-brand-col { width: 100%; border-right: none; border-bottom: 1px solid rgba(245,243,239,0.07); padding: 40px 24px; }
+                .footer-brand-col { width: 100% !important; border-right: none; border-bottom: 1px solid rgba(245,243,239,0.07); padding: 40px 24px; }
                 .footer-logo { font-size: 42px !important; }
-                .footer-nav-cols { grid-template-columns: 1fr; padding: 32px 24px; border-right: none; }
-                .footer-contact-col { width: 100%; padding: 32px 24px; }
+                .footer-nav-cols { grid-template-columns: 1fr 1fr; padding: 40px 24px; border-right: none; }
+                .footer-contact-col { width: 100% !important; padding: 40px 24px; }
                 .footer-bottom { padding: 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
             }
         </style>
