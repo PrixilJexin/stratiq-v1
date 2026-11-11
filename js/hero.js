@@ -1,7 +1,9 @@
 /* StratIQ — 3D hero
    Same model, same camera path and scroll choreography as the original hero.
-   New: wireframe "ignition" intro, switchable lighting rigs, a cursor-steered
-   light, colour swap as the head turns, and an aura backdrop that follows the rig. */
+   New: wireframe "ignition" intro, switchable lighting rigs, lighting that reacts
+   slightly to the cursor (camera and model stay still), colour swap as the head
+   turns, and an aura backdrop that follows the rig. Palette: Signature Orange,
+   Obsidian Black, Soft White, Graphite, Steel Grey. */
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
@@ -55,17 +57,17 @@ function resize() {
 
 /* ═════ Lighting rigs ═════ */
 const RIGS = {
-    signal: {
-        ambient: [0x1a1040, 0.35], key: [0x8b6cff, 17], rim: [0xd4ff3a, 9], top: [0xa8e9ff, 4], cursor: [0xd4ff3a, 5],
-        orbit: 1.0, aura: [[139, 108, 255], [58, 42, 140], [212, 255, 58], [20, 24, 60]]
+    signal: { // orange key, soft-white rim
+        ambient: [0x1a1412, 0.3], key: [0xf15b29, 17], rim: [0xf5f6f1, 6], top: [0xa7a8ac, 3], cursor: [0xff7a45, 3.5],
+        orbit: 1.0, aura: [[241, 91, 41], [90, 34, 16], [167, 168, 172], [53, 54, 58]]
     },
-    noir: {
-        ambient: [0x0b0b0d, 0.12], key: [0xfff3e0, 20], rim: [0x5b6170, 5], top: [0xffffff, 1.5], cursor: [0xffffff, 4],
-        orbit: 0.55, aura: [[80, 80, 88], [30, 30, 34], [190, 186, 178], [14, 14, 16]]
+    noir: { // restrained black and white
+        ambient: [0x111214, 0.12], key: [0xf5f6f1, 20], rim: [0x35363a, 5], top: [0xffffff, 1.5], cursor: [0xf5f6f1, 3],
+        orbit: 0.55, aura: [[90, 91, 96], [53, 54, 58], [200, 201, 204], [17, 18, 20]]
     },
-    prism: {
-        ambient: [0x06121c, 0.3], key: [0x3de3ff, 15], rim: [0xff4fd8, 13], top: [0xd4ff3a, 5], cursor: [0xff4fd8, 5],
-        orbit: 1.7, aura: [[61, 227, 255], [20, 60, 120], [255, 79, 216], [70, 20, 90]]
+    ember: { // soft-white key, hot orange rim
+        ambient: [0x140c08, 0.25], key: [0xf5f6f1, 14], rim: [0xf15b29, 14], top: [0xff8a50, 4], cursor: [0xf15b29, 3.5],
+        orbit: 1.6, aura: [[241, 91, 41], [120, 40, 14], [245, 246, 241], [53, 54, 58]]
     }
 };
 
@@ -102,7 +104,7 @@ document.querySelectorAll('.ll-btn').forEach(b => b.addEventListener('click', ()
 /* ═════ Model + wireframe ignition ═════ */
 const clipReveal = new THREE.Plane(new THREE.Vector3(0, -1, 0), 0); // keeps geometry below the scan height
 const wireMat = new THREE.MeshBasicMaterial({
-    color: 0xd4ff3a, wireframe: true, transparent: true, opacity: 0.0,
+    color: 0xf15b29, wireframe: true, transparent: true, opacity: 0.0,
     blending: THREE.AdditiveBlending, depthWrite: false, clippingPlanes: [clipReveal]
 });
 const solidMats = [];
@@ -197,7 +199,7 @@ const BEAMS = [
 ];
 function drawAura(t, strength) {
     actx.globalCompositeOperation = 'source-over';
-    actx.fillStyle = '#07080b'; actx.fillRect(0, 0, AW, AH);
+    actx.fillStyle = '#111214'; actx.fillRect(0, 0, AW, AH);
     actx.globalCompositeOperation = 'screen';
     BEAMS.forEach((b, i) => {
         b.px += b.vx; b.py += b.vy;
@@ -245,15 +247,13 @@ function loop() {
     if (raw12 === 0) { camPos.lerpVectors(CAM_HOME_POS, CAM_T2_POS, t01); camTgt.lerpVectors(CAM_HOME_TARGET, CAM_T2_TARGET, t01); }
     else { camPos.lerpVectors(CAM_T2_POS, CAM_UP_POS, t12); camTgt.lerpVectors(CAM_T2_TARGET, CAM_UP_TARGET, t12); }
 
-    // subtle cursor parallax on the camera
-    mouseS.lerp(mouse, 0.05);
-    camPos.x += mouseS.x * -6; camPos.y += mouseS.y * 4;
+    // the cursor only moves the light; camera and model stay on their scroll path
+    mouseS.lerp(mouse, isTouch ? 0 : 0.04);
     camera.position.copy(camPos);
     camera.lookAt(model ? tmp.copy(camTgt).lerp(headPoint, headBias * (1 - t12) * (1 - t01 * 0.4)) : camTgt);
 
     if (model) {
-        model.rotation.y = THREE.MathUtils.lerp(Math.PI, Math.PI / 2, t01) + mouseS.x * 0.06;
-        model.rotation.x = mouseS.y * -0.02;
+        model.rotation.y = THREE.MathUtils.lerp(Math.PI, Math.PI / 2, t01);
     }
 
     // ── Intro ignition ──
@@ -294,11 +294,12 @@ function loop() {
 
     // orbiting lights (same paths as the original, speed set by the rig)
     const s = elapsed * live.orbit;
-    key.position.set(Math.sin(s * 0.7) * 600, Math.cos(s * 0.5) * 400 + 100, THREE.MathUtils.lerp(-500, 0, t01));
+    // the key light leans gently toward the cursor (a slight nudge, not a takeover)
+    key.position.set(Math.sin(s * 0.7) * 600 + mouseS.x * 140, Math.cos(s * 0.5) * 400 + 100 + mouseS.y * 110, THREE.MathUtils.lerp(-500, 0, t01));
     rim.position.set(Math.cos(s * 0.6 + Math.PI) * 500, Math.sin(s * 0.4 + 1.2) * 300 + 80, 300 + Math.sin(elapsed * 0.3) * 100);
     top.position.set(Math.sin(s * 0.35) * 200, 350 + Math.cos(s * 0.28) * 120, 100 + Math.sin(s * 0.22) * 80);
 
-    // cursor-steered light: hovers between camera and head, follows the pointer
+    // cursor light: a soft glow between camera and head that tracks the pointer
     cursorLight.color.copy(live.cursor);
     cursorLight.intensity = live.cursorI * introK * (1 - raw12);
     tmp.set(mouseS.x, mouseS.y, 0.5).unproject(camera).sub(camera.position).normalize();

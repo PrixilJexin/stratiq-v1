@@ -292,7 +292,7 @@
                 const wave = Math.sin(Math.hypot(p.x - cx, p.y - cy) * 0.018 - t0 * 1.6) * 0.5 + 0.5;
                 const x = p.x + (dx / (d || 1)) * push * 26, y = p.y + (dy / (d || 1)) * push * 26;
                 const a = 0.08 + wave * 0.14 + push * 0.7;
-                ctx.fillStyle = push > 0.05 ? `rgba(212,255,58,${a})` : `rgba(139,108,255,${a})`;
+                ctx.fillStyle = push > 0.05 ? `rgba(241, 91, 41,${a})` : `rgba(167, 168, 172,${a})`;
                 const r = 1 + wave * 0.8 + push * 2.2;
                 ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill();
             }
