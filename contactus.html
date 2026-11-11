@@ -5,40 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us — STRATIQ</title>
-    <style>
-        @font-face {
-            font-family: 'LilGrotesk';
-            src: url('./fonts/LilGrotesk-Regular.otf') format('opentype'),
-                url('./fonts/LilGrotesk-Regular.ttf') format('truetype');
-            font-weight: 400;
-        }
-
-        @font-face {
-            font-family: 'LilGrotesk';
-            src: url('./fonts/LilGrotesk-Thin.otf') format('opentype'),
-                url('./fonts/LilGrotesk-Thin.ttf') format('truetype');
-            font-weight: 100;
-        }
-
-        @font-face {
-            font-family: 'AtyanDsegh';
-            src: url('./fonts/Atyan Dsegh regular.ttf') format('truetype');
-            font-weight: 400;
-        }
-
-        @font-face {
-            font-family: 'Stentiga';
-            src: url('./fonts/Stentiga.otf') format('opentype');
-            font-weight: 400;
-        }
-
-
-    </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Sans:ital,wght@0,300;0,400;0,500&family=Space+Mono:wght@400;700&family=Oswald:wght@400;500;600&display=swap"
-        rel="stylesheet">
-
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/site.css">
     <style>
         *,
         *::before,
@@ -51,11 +21,11 @@
         :root {
             --white: #f5f3ef;
             --black: #000;
-            --accent: #ff9f19;
+            --accent: #d4ff3a;
             --line: rgba(245, 243, 239, 0.10);
-            --body-font: 'LilGrotesk', 'AtyanDsegh', sans-serif;
-            --display-font: 'AtyanDsegh', 'LilGrotesk', sans-serif;
-            --mono-font: 'Share Tech Mono', monospace;
+            --body-font: 'Space Grotesk', system-ui, sans-serif;
+            --display-font: 'Space Grotesk', system-ui, sans-serif;
+            --mono-font: 'Space Grotesk', system-ui, sans-serif;
         }
 
         html,
@@ -190,7 +160,7 @@
         }
 
         /* ── NAV ── */
-        nav {
+        #main-nav {
             position: fixed;
             top: 0;
             left: 0;
@@ -209,7 +179,7 @@
         }
 
         .nav-logo {
-            font-family: 'Stentiga', 'LilGrotesk', sans-serif;
+            font-family: var(--font-display);
             font-size: 20px;
             letter-spacing: 0.22em;
             color: #fff;
@@ -618,7 +588,7 @@
         }
 
         .contact-headline {
-            font-family: 'LilGrotesk', sans-serif;
+            font-family: var(--font-display);
             font-weight: 100;
             font-size: clamp(60px, 9vw, 140px);
             line-height: 0.92;
@@ -821,7 +791,7 @@
         .chip.selected {
             border-color: var(--accent);
             color: var(--accent);
-            background: rgba(255, 159, 25, 0.06);
+            background: rgba(212, 255, 58, 0.06);
         }
 
         /* Submit button */
@@ -899,7 +869,7 @@
         }
 
         .success-title {
-            font-family: 'LilGrotesk', sans-serif;
+            font-family: var(--font-display);
             font-weight: 100;
             font-size: 42px;
             text-transform: uppercase;
@@ -1299,7 +1269,7 @@
             .corner-fixed { display: none !important; }
 
             /* Nav */
-            nav { padding: 0 20px; height: 60px; }
+            #main-nav { padding: 0 20px; height: 60px; }
             .nav-logo { font-size: 16px; }
             .nav-menu-label, .btn-nav-cta-plus { display: none; }
             .btn-nav-cta { padding: 8px 14px; font-size: 10px; }
@@ -1326,6 +1296,7 @@
             .footer-strip-center { flex-direction: column; align-items: flex-start; gap: 12px; }
         }
     </style>
+    <link rel="stylesheet" href="css/theme-bridge.css">
 </head>
 
 <body>
@@ -1349,82 +1320,35 @@
         </div>
     </div>
 
-    <!-- NAV OVERLAY -->
-    <div id="nav-overlay">
-        <div class="overlay-links">
-            <a href="index.html" class="overlay-link-item">
-                <span class="overlay-link-dot"></span>
-                <span class="overlay-link-text">Home</span>
-            </a>
-            <a href="aboutus.html" class="overlay-link-item">
-                <span class="overlay-link-dot"></span>
-                <span class="overlay-link-text">About Us</span>
-            </a>
-            <a href="lab.html" class="overlay-link-item">
-                <span class="overlay-link-dot"></span>
-                <span class="overlay-link-text">Labs</span>
-            </a>
-            <a href="contactus.html" class="overlay-link-item active">
-                <span class="overlay-link-dot"></span>
-                <span class="overlay-link-text">Contact Us</span>
-            </a>
+    <!-- ══ NAV ══ -->
+    <header class="site-nav" id="site-nav">
+        <a href="index.html" class="brand">Strat<b>IQ</b></a>
+        <nav class="nav-links" aria-label="Primary">
+            <a href="index.html">Home</a>
+            <a href="index.html#results">Results</a>
+            <a href="index.html#work">Case studies</a>
+            <a href="lab.html">Labs</a>
+            <a href="aboutus.html">About</a>
+        </nav>
+        <div class="nav-right">
+            <a href="contactus.html" class="btn magnetic">Book a free audit <span class="btn-arrow"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg></span></a>
+            <button class="nav-burger" id="nav-burger" aria-label="Open menu"><span></span><span></span></button>
         </div>
-        <div class="overlay-contact">
-            <div class="overlay-contact-group">
-                <span class="overlay-contact-label">Contact</span>
-                <span class="overlay-contact-line">contact.stratiq@gmail.com</span>
-                <span class="overlay-contact-line">+91 99629 93245</span>
-            </div>
-            <div class="overlay-contact-group">
-                <span class="overlay-contact-label">Social</span>
-                <span class="overlay-contact-line">Instagram: @withstratiq</span>
-                <span class="overlay-contact-line">LinkedIn: @stratiqservices</span>
-            </div>
-            <div class="overlay-status">
-                <div class="overlay-status-row">
-                    <span class="overlay-status-dot"></span>
-                    <span class="overlay-status-text">Accepting Projects.</span>
-                </div>
-                <div class="overlay-status-row">
-                    <span class="overlay-status-dot" style="opacity:.3;animation:none;"></span>
-                    <span class="overlay-status-text">Only 3 Spots Left</span>
-                </div>
-            </div>
+    </header>
+    <div class="mobile-menu" id="mobile-menu">
+        <div>
+            <a class="mm-link" href="index.html">Home<em>01</em></a>
+            <a class="mm-link" href="index.html#results">Results<em>02</em></a>
+            <a class="mm-link" href="index.html#work">Case studies<em>03</em></a>
+            <a class="mm-link" href="lab.html">Labs<em>04</em></a>
+            <a class="mm-link" href="aboutus.html">About<em>05</em></a>
+            <a class="mm-link" href="contactus.html">Contact<em>06</em></a>
         </div>
-        <div class="overlay-images">
-            <div class="overlay-img-group">
-                <div class="overlay-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&q=80" alt="Studio">
-                </div>
-                <span class="overlay-img-caption">About the Studio</span>
-            </div>
-            <div class="overlay-img-group">
-                <div class="overlay-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80"
-                        alt="Featured Project">
-                </div>
-                <span class="overlay-img-caption">Featured Project</span>
-            </div>
+        <div class="mm-foot">
+            <a href="mailto:contact.stratiq@gmail.com">contact.stratiq@gmail.com</a>
+            <a href="tel:+918122816469">+91 81228 16469</a>
         </div>
     </div>
-
-    <!-- NAV -->
-    <nav id="main-nav">
-        <a href="index.html" class="nav-logo">Strat<em>IQ</em></a>
-        <button class="nav-menu-btn" id="nav-toggle" aria-label="Toggle menu">
-            <span class="nav-menu-label" id="nav-label">Menu</span>
-            <div class="nav-hamburger">
-                <span class="nav-line"></span>
-                <span class="nav-line"></span>
-            </div>
-        </button>
-        <div class="nav-cta-wrap">
-            <button class="btn-nav-cta">
-                Let's Work Together
-                <span class="btn-nav-cta-plus">+</span>
-            </button>
-        </div>
-    </nav>
 
     <!-- PAGE CONTENT -->
     <div class="page-wrap">
@@ -1689,7 +1613,7 @@
     <!-- Corner marks -->
     <span class="corner-fixed br">StratIQ Studio</span>
     <span class="corner-fixed bl"><span id="bottom-clock"
-            style="font-family:'LilGrotesk',sans-serif;font-size:8px;letter-spacing:.18em;color:rgba(245,243,239,0.35);">00:00:00</span></span>
+            style="font-family: var(--font-display);font-size:8px;letter-spacing:.18em;color:rgba(245,243,239,0.35);">00:00:00</span></span>
 
     <script>
         // ── CURSOR ──
@@ -1708,44 +1632,7 @@
         }
         updateClock(); setInterval(updateClock, 1000);
 
-        // ── NAV ──
-        const navToggle = document.getElementById('nav-toggle');
-        const navOverlay = document.getElementById('nav-overlay');
-        const navLabel = document.getElementById('nav-label');
-        const mainNav = document.getElementById('main-nav');
-        let navOpen = false;
-        navToggle.addEventListener('click', () => {
-            navOpen = !navOpen;
-            navOverlay.classList.toggle('open', navOpen);
-            mainNav.classList.toggle('nav-open', navOpen);
-            navLabel.textContent = navOpen ? 'Close' : 'Menu';
-        });
-        document.querySelectorAll('.overlay-link-item').forEach(item => {
-            item.addEventListener('click', e => {
-                const href = item.getAttribute('href');
-                if (href && !href.startsWith('#')) {
-                    e.preventDefault();
-                    setTimeout(() => { window.location.href = href; }, 300);
-                } else if (href === '#') {
-                    e.preventDefault();
-                }
-                document.querySelectorAll('.overlay-link-item').forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                navOpen = false;
-                navOverlay.classList.remove('open');
-                mainNav.classList.remove('nav-open');
-                navLabel.textContent = 'Menu';
-            });
-        });
-
-        // ── Main CTA Redirection ──
-        document.querySelectorAll('.btn-nav-cta').forEach(btn => {
-            btn.addEventListener('click', () => {
-                setTimeout(() => {
-                    window.location.href = 'contactus.html';
-                }, 300);
-            });
-        });
+        
 
         // ── CHIP MULTI-SELECT ──
         document.querySelectorAll('#inquiry-chips .chip').forEach(chip => {
@@ -1783,8 +1670,8 @@
             { px: .08, py: .0, vx: .000055, vy: .000040, angle: .52, width: .55, color: [10, 38, 95], peak: 1.72 },
             { px: .0, py: .42, vx: .000038, vy: -.000025, angle: .30, width: .38, color: [8, 22, 68], peak: 1.50 },
             { px: .30, py: .20, vx: .000018, vy: .000022, angle: .68, width: .70, color: [4, 4, 14], peak: 1.90 },
-            { px: .62, py: .70, vx: -.000042, vy: -.000030, angle: .45, width: .48, color: [168, 60, 6], peak: 1.65 },
-            { px: .80, py: .50, vx: -.000035, vy: .000028, angle: .22, width: .35, color: [140, 44, 5], peak: 1.50 },
+            { px: .62, py: .70, vx: -.000042, vy: -.000030, angle: .45, width: .48, color: [110, 82, 235], peak: 1.65 },
+            { px: .80, py: .50, vx: -.000035, vy: .000028, angle: .22, width: .35, color: [60, 44, 150], peak: 1.50 },
             { px: .25, py: -.1, vx: .000028, vy: .000048, angle: .60, width: .28, color: [18, 42, 100], peak: 1.55 },
         ];
         const streakState = STREAKS.map(s => ({ px: s.px, py: s.py }));
@@ -1819,6 +1706,7 @@
         }
         requestAnimationFrame(drawBg);
     </script>
+<script src="js/site.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,66 @@
+/* ═══════════════════════════════════════════════════════════════
+   Theme bridge — brings the inner pages (About, Labs, Contact)
+   onto the new StratIQ palette and type pair. Loaded last.
+   ═══════════════════════════════════════════════════════════════ */
+
+html,
+body {
+    background: var(--ink);
+}
+
+/* body copy in the editorial serif, UI stays in Space Grotesk */
+p,
+.sub-message,
+.SlideSubheading,
+.contact-header-desc,
+.success-desc,
+.footer-pitch {
+    font-family: var(--font-serif) !important;
+    font-weight: 300;
+    letter-spacing: 0 !important;
+}
+
+h1,
+h2,
+.hero-heading,
+.contact-headline,
+.success-title {
+    font-family: var(--font-display) !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.045em !important;
+}
+
+/* legacy cursor → lime */
+#cursor {
+    background: var(--lime) !important;
+}
+
+#cursor-ring {
+    border-color: rgba(212, 255, 58, 0.45) !important;
+}
+
+/* inputs, chips and buttons pick up the accent */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--lime) !important;
+    outline: none;
+}
+
+::selection {
+    background: var(--lime);
+    color: var(--lime-ink);
+}
+
+/* new nav sits above legacy page layers */
+.site-nav {
+    z-index: 1200;
+}
+
+.mobile-menu {
+    z-index: 1190;
+}
+
+.site-footer {
+    z-index: 5;
+}
